@@ -64,7 +64,7 @@ Test / webpackConfigFile := Some(baseDirectory.value / "webpack" / "webpack-core
 fastOptJS / webpackDevServerExtraArgs := Seq("--inline", "--hot")
 fastOptJS / webpackBundlingMode := BundlingMode.LibraryOnly()
 
-Test / requireJsDomEnv := true
+//Test / requireJsDomEnv := true
 
 addCommandAlias("dev", ";fastOptJS::startWebpackDevServer;~fastOptJS")
 
