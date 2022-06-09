@@ -47,9 +47,9 @@ lazy val root = project
       "org.scalatest" %%% "scalatest"      % "3.2.12"    % "test",
       "com.github.japgolly.scalajs-react" %%% "core" % "2.1.1"
     ),
-
-    scalaJSUseMainModuleInitializer := true,
-    Compile / mainClass := Some("Main")
+//
+//    scalaJSUseMainModuleInitializer := true,
+//    Compile / mainClass := Some("Main")
   )
 
 webpack / version := "4.43.0"

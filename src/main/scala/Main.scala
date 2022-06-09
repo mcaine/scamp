@@ -1,10 +1,12 @@
 import org.scalajs.dom
 import dom.{document, window}
+import scala.scalajs.js.annotation.{JSExportTopLevel, JSImport}
 
 object Main {
 
-  def main(args: Array[String]): Unit = {
-    println("Starting 'scamp'...")
+  @JSExportTopLevel("main")
+  def main(): Unit = {
+    println("Starting 'SCAMP' app...")
 //
 //    val p = document.createElement("p")
 //    val text = document.createTextNode("Hello! this was added by Scala JS and should reload")

@@ -6,7 +6,7 @@ object App {
     ScalaComponent.builder[Unit]
       .renderStatic(
         <.div(
-          "RARA"
+          "WUT"
         )
       )
       .build
