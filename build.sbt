@@ -45,7 +45,10 @@ lazy val root = project
     libraryDependencies ++= Seq(
       "org.scala-js"  %%% "scalajs-dom"    % "2.2.0",
       "org.scalatest" %%% "scalatest"      % "3.2.12"    % "test",
-      "com.github.japgolly.scalajs-react" %%% "core" % "2.1.1"
+      "com.github.japgolly.scalajs-react" %%% "core" % "2.1.1",
+      "com.github.japgolly.scalajs-react" %%% "extra" % "2.1.1",
+      "com.github.japgolly.scalajs-react" %%% "extra-ext-monocle3"   % "2.1.1",
+      "dev.optics" %% "monocle-core"  % "3.1.0",
     ),
 //
 //    scalaJSUseMainModuleInitializer := true,

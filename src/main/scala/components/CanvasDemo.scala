@@ -1,19 +1,20 @@
+package components
+
 import japgolly.scalajs.react.ScalaComponent
 import japgolly.scalajs.react.vdom.html_<^.*
-import components.{CallbackOptionDemo, CanvasDemo, StateSnapshotDemo}
 
-object App {
+object CanvasDemo {
+
   val Component =
     ScalaComponent.builder[Unit]
       .renderStatic(
         <.div(
-          CanvasDemo(),
-          StateSnapshotDemo(),
-          CallbackOptionDemo(),
+          <.div("CANVAS DEMO"),
+          <.div(<.canvas())
         )
       )
       .build
 
   def apply() = Component()
-}
 
+}
