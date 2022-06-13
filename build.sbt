@@ -1,15 +1,17 @@
 lazy val root = project
   .in(file("."))
-  .enablePlugins(ScalaJSPlugin)
-  .enablePlugins(ScalaJSBundlerPlugin)
+  //.enablePlugins(ScalaJSPlugin)
+  .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin, ScalablyTypedConverterPlugin)
   .settings(
     inThisBuild(List(
       organization := "com.mikeycaine",
       version      := "0.1-SNAPSHOT",
-      scalaVersion := "3.1.2"
+      scalaVersion := "3.1.2",
     )),
 
     name := "scamp",
+
+    stFlavour    := Flavour.ScalajsReact,
 
     Compile / npmDevDependencies ++= Seq (
       "file-loader" -> "6.0.0",
@@ -23,12 +25,12 @@ lazy val root = project
     Compile / npmDependencies ++= Seq(
       "react" -> "17.0.2",
       "react-dom" -> "17.0.2",
-//      "@types/react" -> "17.0.38",
-//      "@types/react-dom" -> "17.0.11",
+      "@types/react" -> "17.0.38",
+      "@types/react-dom" -> "17.0.11",
 //      "react-proxy" -> "1.1.8",
 //
-//      "three" -> "0.135.0",
-//      "@types/three" -> "0.135.0",
+      "three" -> "0.135.0",
+      "@types/three" -> "0.135.0",
 //      "@types/p5" -> "1.3.2",
 //
 //      "react-p5" -> "1.3.24",
