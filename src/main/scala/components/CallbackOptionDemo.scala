@@ -2,14 +2,11 @@ package components
 
 import japgolly.scalajs.react.vdom.html_<^.*
 import japgolly.scalajs.react.BackendScope
-import japgolly.scalajs.react.Ref
+import japgolly.scalajs.react.{ScalaComponent, Ref, Callback, CallbackOption}
 import japgolly.scalajs.react.ReactKeyboardEvent
-import japgolly.scalajs.react.Callback
-import japgolly.scalajs.react.CallbackOption
 import japgolly.scalajs.react.ReactCallbackExtensionCallbackOptionObj
-import japgolly.scalajs.react.ScalaComponent
-import org.scalajs.dom._
 import japgolly.scalajs.react.toReactExt_ReactEvent
+import org.scalajs.dom._
 
 object CallbackOptionDemo {
 
@@ -92,5 +89,4 @@ object CallbackOptionDemo {
     .build
 
   def apply() = Main()
-
 }
