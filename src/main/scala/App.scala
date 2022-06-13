@@ -1,12 +1,15 @@
 import japgolly.scalajs.react.ScalaComponent
 import japgolly.scalajs.react.vdom.html_<^.*
+import components.{CallbackOptionDemo, CanvasDemo, StateSnapshotDemo}
 
 object App {
   val Component =
     ScalaComponent.builder[Unit]
       .renderStatic(
         <.div(
-          "WUT"
+          CanvasDemo(),
+          StateSnapshotDemo(),
+          CallbackOptionDemo(),
         )
       )
       .build

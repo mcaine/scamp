@@ -6,12 +6,7 @@ object Main {
 
   @JSExportTopLevel("main")
   def main(): Unit = {
-    println("Starting 'SCAMP' app...")
-//
-//    val p = document.createElement("p")
-//    val text = document.createTextNode("Hello! this was added by Scala JS and should reload")
-//    p.appendChild(text)
-//    document.body.appendChild(p)
+    //println("Starting 'SCAMP' app...")
 
     val rootElement = Option(dom.document.getElementById("root")).getOrElse {
       val elem = dom.document.createElement("div")
@@ -22,7 +17,4 @@ object Main {
 
     App().renderIntoDOM(rootElement)
   }
-
-
-
 }
