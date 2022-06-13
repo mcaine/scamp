@@ -18,4 +18,4 @@ jobs:
         with:
           node-version: 10.15
       - name: Build and Test
-        run: JAVA_OPTS="-Xmx2g" sbt -v +test
+        run: JAVA_OPTS="-Xmx2g" sbt -v build
