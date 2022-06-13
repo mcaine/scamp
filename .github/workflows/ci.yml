@@ -16,6 +16,6 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 12.1.14
+          node-version: 10.15
       - name: Build and Test
         run: JAVA_OPTS="-Xmx2g" sbt -v +test
