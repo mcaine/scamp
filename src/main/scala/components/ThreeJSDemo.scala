@@ -32,10 +32,10 @@ object ThreeJSDemo {
 
     val canvasRef = Ref[html.Canvas]
 
-    def setClicked =
+    val setClicked =
       $.setState("CLICKED")
 
-    def render(state: String) =
+    def render(state: String) : VdomElement =
       <.div(
         <.button(
           ^.onClick --> setClicked,
