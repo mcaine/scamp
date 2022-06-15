@@ -1,13 +1,14 @@
 import japgolly.scalajs.react.ScalaComponent
 import japgolly.scalajs.react.vdom.html_<^.*
-import components.{CallbackOptionDemo, CanvasDemo, StateSnapshotDemo, ThreeJSDemo}
+import components.{CallbackOptionDemo, CanvasDemo, OpenLayersDemo, StateSnapshotDemo, ThreeJSDemo}
 
 object App {
   val Component =
     ScalaComponent.builder[Unit]
       .renderStatic(
         <.div(
-          ThreeJSDemo(),
+//          ThreeJSDemo(),
+          OpenLayersDemo()
 //          CanvasDemo(),
 //          StateSnapshotDemo(),
 //          CallbackOptionDemo(),
