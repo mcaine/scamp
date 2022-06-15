@@ -7,11 +7,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
       - name: Setup JDK
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 8
-      - name: Build and Test
-        run: sbt -v +test
+          java-version: '17'
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 10.15
+
+      - name: Coursier cache
+        uses: coursier/cache-action@v6
+
+      - name: Build
+        run: JAVA_OPTS="-Xmx2g" sbt -v build
+
+      - name: Cleanup before cache
+        shell: bash
+        run: |
+          rm -rf "$HOME/.ivy2/local" || true
+          find $HOME/Library/Caches/Coursier/v1        -name "ivydata-*.properties" -delete || true
+          find $HOME/.ivy2/cache                       -name "ivydata-*.properties" -delete || true
+          find $HOME/.cache/coursier/v1                -name "ivydata-*.properties" -delete || true
+          find $HOME/.sbt                              -name "*.lock"               -delete || true

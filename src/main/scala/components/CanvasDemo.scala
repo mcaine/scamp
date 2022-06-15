@@ -13,7 +13,7 @@ object CanvasDemo {
 
     val canvasRef = Ref[html.Canvas]
 
-    def setClicked =
+    val setClicked =
       $.setState("CLICKED") >>
       canvasRef.foreach(canvas => {
         val gl: WebGLRenderingContext = canvas.getContext("webgl").asInstanceOf[WebGLRenderingContext]
