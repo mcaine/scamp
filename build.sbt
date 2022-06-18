@@ -1,6 +1,5 @@
 lazy val root = project
   .in(file("."))
-  //.enablePlugins(ScalaJSPlugin)
   .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin, ScalablyTypedConverterPlugin)
   .settings(
     inThisBuild(List(
@@ -11,7 +10,7 @@ lazy val root = project
 
     name := "scamp",
 
-    stFlavour    := Flavour.ScalajsReact,
+    stFlavour := Flavour.ScalajsReact,
 
     Compile / npmDevDependencies ++= Seq (
       "file-loader" -> "6.0.0",
