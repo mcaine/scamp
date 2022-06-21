@@ -73,7 +73,7 @@ object GPXMap {
         val theMap = new olMapMod.default(opts)
 
         gpxSource.on("addfeature", (feature) => {
-          println(s"added feature ${feature}")
+          //println(s"added feature ${feature}")
           theMap.getView().fit(gpxSource.getExtent())
         })
 
@@ -86,7 +86,7 @@ object GPXMap {
         })
       })
 
-    def init: Callback = $.props >>= draw
+    def init = $.props >>= draw
   }
 
   val Component =
