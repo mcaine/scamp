@@ -28,25 +28,22 @@ object GPXMap {
 
     private val divRef = Ref[html.Div]
 
-    def render = {
-      //println(s"Rendering with props ${props}")
-
+    def render =
       <.div(
         ^.className := "map-container",
       ).withRef(divRef)
-    }
 
-    val draw = (p: Props) => {
+    val draw = (p: Props) =>
       divRef.foreach(containerDiv => {
 
-        println(s"Calling init ${p}")
+        val gpxSource = new typings.ol.sourceVectorMod.default(new typings.ol.sourceVectorMod.Options {
+          url = p.gpx
+          format = new formatMod.GPX()
+        })
 
         // Vector layer from GPX track
         val gpxLayer = typings.ol.vectorMod.default(new vectorMod.Options {
-          source = new typings.ol.sourceVectorMod.default(new typings.ol.sourceVectorMod.Options {
-            url = p.gpx
-            format = new formatMod.GPX()
-          })
+          source = gpxSource
           style = new styleMod.Style(new styleStyleMod.Options {
             stroke = new typings.ol.strokeMod.default(new strokeMod.Options {
               color = js.Array(255, 100, 100)
@@ -68,12 +65,17 @@ object GPXMap {
           )
 
           view = new viewMod.default(new viewMod.ViewOptions {
-            center = js.Array(0, 6706150)
-            zoom = 18
+            center = js.Array(0, 0)
+            zoom = 5
           })
         }
 
         val theMap = new olMapMod.default(opts)
+
+        gpxSource.on("addfeature", (feature) => {
+          println(s"added feature ${feature}")
+          theMap.getView().fit(gpxSource.getExtent())
+        })
 
         theMap.on("click", (event) => {
           val mapBrowserEvent: MapBrowserEvent = event.asInstanceOf[MapBrowserEvent]
@@ -83,7 +85,6 @@ object GPXMap {
           println(s"Clicked at: ${transformedCoord(0)} ${transformedCoord(1)}")
         })
       })
-    }
 
     def init: Callback = $.props >>= draw
   }
