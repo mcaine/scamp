@@ -13,17 +13,14 @@ import typings.ol.vectorMod.VectorLayer
 import typings.ol.pluggableMapMod.PluggableMap
 import typings.ol.mapEventMod.MapEvent
 import typings.ol.mapBrowserEventMod.MapBrowserEvent
-import typings.ol.{circleMod, eventMod, geometryMod, geometryTypeMod, olFeatureMod, olMapMod, olTileMod, pixelMod, pluggableMapMod, sourceMod, tileLayerMod, tileMod, vectorLayerMod, vectorMod, viewMod}
+import typings.ol.olFeatureMod.Feature
+import typings.ol.{circleMod, eventMod, formatMod, geometryMod, geometryTypeMod, gpxMod, olFeatureMod, olMapMod, olTileMod, pixelMod, pluggableMapMod, sourceMod, strokeMod, styleMod, styleStyleMod, tileLayerMod, tileMod, vectorLayerMod, vectorMod, viewMod}
 import typings.ol.projMod.transform
+
 import scala.scalajs.js
 import scala.scalajs.js.UndefOr
 
 object OpenLayersDemo {
-
-  //type OLMap = olMapMod.default
-  //type VectorLayer = typings.ol.vectorMod.VectorLayer
-
-  //case class State(theMap: Option[OLMap], vectorLayer: Option[VectorLayer])
 
   class Backend($: BackendScope[Unit, Unit]) {
 
@@ -36,12 +33,32 @@ object OpenLayersDemo {
 
     def init: Callback = divRef.foreach(containerDiv => {
 
-      val feature = olFeatureMod.default(new circleMod.default(js.Array(0, 6706150), 100))
-      val feature2 = olFeatureMod.default(new circleMod.default(js.Array(0, 6706150), 150))
+      // Vector layer from GPX track
+      val gpxLayer = typings.ol.vectorMod.default(new vectorMod.Options {
+        source = new typings.ol.sourceVectorMod.default(new typings.ol.sourceVectorMod.Options {
+          url = "gpx/southernuplandway.gpx"
+          format = new formatMod.GPX()
+        })
+        style = new styleMod.Style(new styleStyleMod.Options {
+          stroke = new typings.ol.strokeMod.default(new strokeMod.Options {
+            color = js.Array(255, 100, 100)
+            width = 3
+          })
+        })
+      })
 
+      // Vector Features
+      val feature = new olFeatureMod.default(new circleMod.default(js.Array(0, 6706150), 100))
+      val feature2 = olFeatureMod.default(new circleMod.default(js.Array(0, 6706150), 150))
       val vectorLayer: VectorLayer = typings.ol.vectorMod.default(new vectorMod.Options {
         source = new typings.ol.sourceVectorMod.default(new typings.ol.sourceVectorMod.Options {
           features = js.Array(feature, feature2)
+        })
+        style = new styleMod.Style(new typings.ol.styleStyleMod.Options {
+          stroke = new typings.ol.strokeMod.default(new strokeMod.Options {
+            color = js.Array(100, 100, 255)
+            width = 2
+          })
         })
       })
 
@@ -53,7 +70,8 @@ object OpenLayersDemo {
           new tileMod.default(new tileMod.Options {
             source = new sourceMod.OSM()
           }),
-          vectorLayer
+          vectorLayer,
+          gpxLayer
         )
 
         view = new viewMod.default(new viewMod.ViewOptions {
