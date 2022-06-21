@@ -6,18 +6,12 @@ import japgolly.scalajs.react.vdom.html_<^.^.onClick
 import japgolly.scalajs.react.{Callback, ReactEvent, ReactMouseEventFromHtml, Ref, ScalaComponent}
 import org.scalablytyped.runtime.StringDictionary
 import org.scalajs.dom.*
-//import typings.ol.coordinateMod.Coordinate
-//import typings.ol.geometryTypeMod.GeometryType
 import typings.ol.mapBrowserEventMod.MapBrowserEvent
-//import typings.ol.mapEventMod.MapEvent
-//import typings.ol.olFeatureMod.Feature
 import typings.ol.projMod.transform
 import typings.ol.vectorMod.VectorLayer
 import typings.ol.*
 
 import scala.scalajs.js
-
-//import scala.scalajs.js.UndefOr
 
 object GPXMap {
 
