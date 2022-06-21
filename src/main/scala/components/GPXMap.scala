@@ -6,19 +6,18 @@ import japgolly.scalajs.react.vdom.html_<^.^.onClick
 import japgolly.scalajs.react.{Callback, ReactEvent, ReactMouseEventFromHtml, Ref, ScalaComponent}
 import org.scalablytyped.runtime.StringDictionary
 import org.scalajs.dom.*
-import typings.ol.coordinateMod.Coordinate
-import typings.ol.geometryTypeMod.GeometryType
+//import typings.ol.coordinateMod.Coordinate
+//import typings.ol.geometryTypeMod.GeometryType
 import typings.ol.mapBrowserEventMod.MapBrowserEvent
-import typings.ol.mapEventMod.MapEvent
-import typings.ol.olFeatureMod.Feature
-import typings.ol.olMapMod.Map as OLMap
-import typings.ol.pluggableMapMod.PluggableMap
+//import typings.ol.mapEventMod.MapEvent
+//import typings.ol.olFeatureMod.Feature
 import typings.ol.projMod.transform
 import typings.ol.vectorMod.VectorLayer
 import typings.ol.*
 
 import scala.scalajs.js
-import scala.scalajs.js.UndefOr
+
+//import scala.scalajs.js.UndefOr
 
 object GPXMap {
 
@@ -36,23 +35,23 @@ object GPXMap {
     val draw = (p: Props) =>
       divRef.foreach(containerDiv => {
 
-        val gpxSource = new typings.ol.sourceVectorMod.default(new typings.ol.sourceVectorMod.Options {
+        val gpxSource = new sourceVectorMod.default[geometryMod.default](new sourceVectorMod.Options {
           url = p.gpx
           format = new formatMod.GPX()
         })
 
         // Vector layer from GPX track
-        val gpxLayer = typings.ol.vectorMod.default(new vectorMod.Options {
+        val gpxLayer = vectorMod.default(new baseVectorMod.Options {
           source = gpxSource
           style = new styleMod.Style(new styleStyleMod.Options {
-            stroke = new typings.ol.strokeMod.default(new strokeMod.Options {
+            stroke = new strokeMod.default(new strokeMod.Options {
               color = js.Array(255, 100, 100)
               width = 3
             })
           })
         })
 
-        val osmLayer = new tileMod.default(new tileMod.Options {
+        val osmLayer = new tileMod.default(new baseTileMod.Options {
           source = new sourceMod.OSM()
         })
 
@@ -78,10 +77,9 @@ object GPXMap {
         })
 
         theMap.on("click", (event) => {
-          val mapBrowserEvent: MapBrowserEvent = event.asInstanceOf[MapBrowserEvent]
-          val pluggableMap: PluggableMap = mapBrowserEvent.map
-          val coordinates: Coordinate = pluggableMap.getCoordinateFromPixel(mapBrowserEvent.pixel)
-          val transformedCoord = transform(coordinates, "EPSG:3857", "EPSG:4326")
+          val mapBrowserEvent: MapBrowserEvent[UIEvent] = event.asInstanceOf[MapBrowserEvent[UIEvent]]
+          val coords = mapBrowserEvent.coordinate
+          val transformedCoord = transform(coords, "EPSG:3857", "EPSG:4326")
           println(s"Clicked at: ${transformedCoord(0)} ${transformedCoord(1)}")
         })
       })

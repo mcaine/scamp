@@ -8,7 +8,8 @@ object App {
       .renderStatic(
         <.div(
 //          ThreeJSDemo(),
-          GPXMap("gpx/pennineway.gpx"),
+          GPXMap("gpx/southernuplandway.gpx"),
+//          GPXMap("gpx/pennineway.gpx"),
 //          OpenLayersDemo()
 //          CanvasDemo(),
 //          StateSnapshotDemo(),

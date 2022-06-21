@@ -30,8 +30,8 @@ lazy val root = project
 //
       "three" -> "0.135.0",
       "@types/three" -> "0.135.0",
-      "ol" -> "5.3.0",
-      "@types/ol" -> "5.3.6"
+      "ol" -> "6.14.1",
+      "@types/ol" -> "6.5.3"
 //      "@types/p5" -> "1.3.2",
 //
 //      "react-p5" -> "1.3.24",

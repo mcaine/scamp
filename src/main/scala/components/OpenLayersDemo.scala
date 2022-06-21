@@ -14,7 +14,7 @@ import typings.ol.pluggableMapMod.PluggableMap
 import typings.ol.mapEventMod.MapEvent
 import typings.ol.mapBrowserEventMod.MapBrowserEvent
 import typings.ol.olFeatureMod.Feature
-import typings.ol.{circleMod, eventMod, formatMod, geometryMod, geometryTypeMod, gpxMod, olFeatureMod, olMapMod, olTileMod, pixelMod, pluggableMapMod, sourceMod, strokeMod, styleMod, styleStyleMod, tileLayerMod, tileMod, vectorLayerMod, vectorMod, viewMod}
+import typings.ol.{sourceVectorMod, baseTileMod, baseVectorMod, circleMod, eventMod, formatMod, geometryMod, geometryTypeMod, gpxMod, olFeatureMod, olMapMod, olTileMod, pixelMod, pluggableMapMod, sourceMod, strokeMod, styleMod, styleStyleMod, tileLayerMod, tileMod, vectorLayerMod, vectorMod, viewMod}
 import typings.ol.projMod.transform
 
 import scala.scalajs.js
@@ -34,13 +34,13 @@ object OpenLayersDemo {
     def init: Callback = divRef.foreach(containerDiv => {
 
       // Vector layer from GPX track
-      val gpxLayer = typings.ol.vectorMod.default(new vectorMod.Options {
-        source = new typings.ol.sourceVectorMod.default(new typings.ol.sourceVectorMod.Options {
+      val gpxLayer = new vectorMod.default(new baseVectorMod.Options {
+        source = new sourceVectorMod.default(new sourceVectorMod.Options {
           url = "gpx/southernuplandway.gpx"
           format = new formatMod.GPX()
         })
         style = new styleMod.Style(new styleStyleMod.Options {
-          stroke = new typings.ol.strokeMod.default(new strokeMod.Options {
+          stroke = new strokeMod.default(new strokeMod.Options {
             color = js.Array(255, 100, 100)
             width = 3
           })
@@ -48,14 +48,14 @@ object OpenLayersDemo {
       })
 
       // Vector Features
-      val feature = new olFeatureMod.default(new circleMod.default(js.Array(0, 6706150), 100))
-      val feature2 = olFeatureMod.default(new circleMod.default(js.Array(0, 6706150), 150))
-      val vectorLayer: VectorLayer = typings.ol.vectorMod.default(new vectorMod.Options {
-        source = new typings.ol.sourceVectorMod.default(new typings.ol.sourceVectorMod.Options {
+      val feature = new olFeatureMod.default(new circleMod.default(js.Array(0, 6706150), 100).asInstanceOf[geometryMod.default])
+      val feature2 = new olFeatureMod.default(new circleMod.default(js.Array(0, 6706150), 150).asInstanceOf[geometryMod.default])
+      val vectorLayer: VectorLayer = vectorMod.default(new baseVectorMod.Options {
+        source = new sourceVectorMod.default(new sourceVectorMod.Options {
           features = js.Array(feature, feature2)
         })
-        style = new styleMod.Style(new typings.ol.styleStyleMod.Options {
-          stroke = new typings.ol.strokeMod.default(new strokeMod.Options {
+        style = new styleMod.Style(new styleStyleMod.Options {
+          stroke = new strokeMod.default(new strokeMod.Options {
             color = js.Array(100, 100, 255)
             width = 2
           })
@@ -67,7 +67,7 @@ object OpenLayersDemo {
 
         layers = js.Array(
 
-          new tileMod.default(new tileMod.Options {
+          new tileMod.default(new baseTileMod.Options {
             source = new sourceMod.OSM()
           }),
           vectorLayer,
@@ -83,7 +83,7 @@ object OpenLayersDemo {
       val theMap = new olMapMod.default(opts)
 
       theMap.on("click", (event) => {
-        val mapBrowserEvent: MapBrowserEvent = event.asInstanceOf[MapBrowserEvent]
+        val mapBrowserEvent: MapBrowserEvent[_] = event.asInstanceOf[MapBrowserEvent[_]]
         val pluggableMap: PluggableMap = mapBrowserEvent.map
         val coordinates: Coordinate = pluggableMap.getCoordinateFromPixel(mapBrowserEvent.pixel)
         val transformedCoord = transform(coordinates, "EPSG:3857", "EPSG:4326")
