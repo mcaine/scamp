@@ -1,6 +1,6 @@
 import japgolly.scalajs.react.ScalaComponent
 import japgolly.scalajs.react.vdom.html_<^.*
-import components.{CallbackOptionDemo, CanvasDemo, OpenLayersDemo, StateSnapshotDemo, ThreeJSDemo}
+import components.{CallbackOptionDemo, CanvasDemo, GPXMap, OpenLayersDemo, StateSnapshotDemo, ThreeJSDemo}
 
 object App {
   val Component =
@@ -8,7 +8,9 @@ object App {
       .renderStatic(
         <.div(
 //          ThreeJSDemo(),
-          OpenLayersDemo()
+          GPXMap("gpx/southernuplandway.gpx"),
+//          GPXMap("gpx/pennineway.gpx"),
+//          OpenLayersDemo()
 //          CanvasDemo(),
 //          StateSnapshotDemo(),
 //          CallbackOptionDemo(),
