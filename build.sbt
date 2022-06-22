@@ -28,8 +28,11 @@ lazy val root = project
       "@types/react-dom" -> "17.0.11",
 //      "react-proxy" -> "1.1.8",
 //
-      "three" -> "0.135.0",
-      "@types/three" -> "0.135.0",
+      // Three.js
+      "three" -> "0.141.0",
+      "@types/three" -> "0.141.0",
+
+      // Openlayers
       "ol" -> "6.14.1",
       "@types/ol" -> "6.5.3"
 //      "@types/p5" -> "1.3.2",
