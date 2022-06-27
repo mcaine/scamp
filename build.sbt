@@ -4,7 +4,7 @@ lazy val root = project
   .settings(
     inThisBuild(List(
       organization := "com.mikeycaine",
-      version      := "0.1-SNAPSHOT",
+      version      := "0.2.0-SNAPSHOT",
       scalaVersion := "3.1.3",
     )),
 
