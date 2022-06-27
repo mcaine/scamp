@@ -49,11 +49,21 @@ object GPXMap {
           source = new sourceMod.OSM()
         })
 
+        val ordnanceSurveyAPIKey = "cOWdIrp8IhFA3VXfp0NC0GO0FTDwNwX5"
+
+        val ordnanceSurveyLayer = new tileMod.default(new baseTileMod.Options {
+          source = new sourceMod.XYZ(new xyzMod.Options {
+            url = s"https://api.os.uk/maps/raster/v1/zxy/Outdoor_3857/{z}/{x}/{y}.png?key=${ordnanceSurveyAPIKey}"
+          })
+          //opacity = 0.5
+        })
+
         val opts = new pluggableMapMod.MapOptions {
           target = containerDiv
 
           layers = js.Array(
             osmLayer,
+            ordnanceSurveyLayer,
             gpxLayer
           )
 
