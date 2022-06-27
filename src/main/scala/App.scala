@@ -7,13 +7,13 @@ object App {
     ScalaComponent.builder[Unit]
       .renderStatic(
         <.div(
-//          ThreeJSDemo(),
+          ThreeJSDemo(),
           GPXMap("gpx/southernuplandway.gpx"),
-//          GPXMap("gpx/pennineway.gpx"),
-//          OpenLayersDemo()
-//          CanvasDemo(),
-//          StateSnapshotDemo(),
-//          CallbackOptionDemo(),
+          GPXMap("gpx/pennineway.gpx"),
+          OpenLayersDemo(),
+          CanvasDemo(),
+          StateSnapshotDemo(),
+          CallbackOptionDemo(),
         )
       )
       .build
